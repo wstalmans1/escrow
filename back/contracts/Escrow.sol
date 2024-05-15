@@ -14,7 +14,14 @@ contract Escrow {
 		depositor = msg.sender;
 	}
 
+	uint public balance = address(this).balance;
+
 	event Approved(uint);
+
+	//function balance() public {
+	//	uint balance = address(this).balance;
+	//	return balance;
+	//} 
 
 	function approve() external {
 		require(msg.sender == arbiter);
