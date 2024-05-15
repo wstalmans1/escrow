@@ -14,7 +14,7 @@ contract Escrow {
 		depositor = msg.sender;
 	}
 
-	uint public balance = address(this).balance;
+	uint public contractBalance = address(this).balance;
 
 	event Approved(uint);
 
