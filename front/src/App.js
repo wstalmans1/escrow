@@ -3,6 +3,7 @@ import './App.css';
 import { ethers } from 'ethers';
 
 function App() {
+  
   const [balance, setBalance] = useState(null);
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
@@ -28,10 +29,12 @@ function App() {
 
   const fetchBalance = async () => {
     if (signer && account) {
+      //***********
       const balance = await provider.getBalance(account);
       setBalance(ethers.formatEther(balance));
+      //*******
     }
-  };
+  };  
 
   return (
     <div className="App">
