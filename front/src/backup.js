@@ -3,6 +3,7 @@ import './App.css';
 import { ethers } from 'ethers';
 
 function App() {
+  
   const [balance, setBalance] = useState(null);
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
@@ -18,7 +19,8 @@ function App() {
         setProvider(newProvider);
         const newSigner = await newProvider.getSigner();
         setSigner(newSigner);
-        const newAccount = await newSigner.getAddress();
+        //const newAccount = await newSigner.getAddress();
+        const newAccount = "0x0693B05E5C8aeF4DA37c2Bc0E7B507e602404348";
         setAccount(newAccount);
       }
     };
@@ -26,15 +28,17 @@ function App() {
   }, []);
 
   const fetchBalance = async () => {
-    if (provider && account) {
-      const bal = await provider.getBalance(account);
-      setBalance(ethers.formatEther(bal));
+    if (signer && account) {
+      //***********
+      const balance = await provider.getBalance(account);
+      setBalance(ethers.formatEther(balance));
+      //*******
     }
   };  
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header">        
         {account && <p>Account: {account}</p>}
         <button onClick={fetchBalance}>Get Balance</button>
         {balance !== null && <p>Balance: {balance} ETH</p>}
